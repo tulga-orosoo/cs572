@@ -42,16 +42,36 @@ String.prototype.filterWords = function(strArray) {
 
 
 
-// String.prototype.filterWords = async function(strArray) {
-//   let originalStr = this.valueOf();
-//   return new Promise(function(resolve, reject) {
-//     strArray.map(str => originalStr = originalStr.replace(str, "***"));
-//     resolve(originalStr);
-//   });
-// }
+String.prototype.filterWords = function(strArray) {
+  let originalStr = this.valueOf();
+  return new Promise(function(resolve, reject) {
+    strArray.map(str => originalStr = originalStr.replace(str, "***"));
+    resolve(originalStr);
+  });
+}
 
-// let result = await "This house is nice!".filterWords(['house', 'nice']);
-// console.log(result);
+let promise = "This house is nice!".filterWords(['house', 'nice']);
+let result = await promise;
+console.log(result);
+
+
+const {Observable} = rxjs;
+
+String.prototype.filterWords = function(strArray) {
+  let originalStr = this.valueOf();
+  return Observable.create(function(observer) {
+    strArray.map(str => originalStr = originalStr.replace(str, "***"));
+    observer.next(originalStr);
+    setTimeout(() => { observer.complete(); }, 2000);
+  });
+}
+
+const subscriptin = "This house is nice!".filterWords(['house', 'nice']).subscribe(
+  function(x) {console.log(x)},
+  function(err) {console.log(err)},
+  function() {console.log("Observable done!")},
+)
+
 
 
 
@@ -81,7 +101,6 @@ const item = {
 }
 
 console.log(applyCoupon(item)(20).price === 180);
-
 
 
   </script>
