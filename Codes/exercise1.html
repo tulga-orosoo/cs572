@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/rxjs/bundles/rxjs.umd.min.js"></script>
+  </head>
+  <body>
+
+  </body>
+
+  <script>
+
+
+// String.prototype.filterWords = function(strArray) {
+//   return this.valueOf().split(' ').map(str => {
+//     if(strArray.indexOf(str) > -1) {
+//       return (new Array(str.length)).join("*");
+//     }
+//     return str;
+//   }).reduce((x, y) => x + ' ' + y);
+// }
+
+// console.log("This house is nice!".filterWords(['house', 'nice']));
+
+
+String.prototype.filterWords = function(strArray) {
+  let originalStr = this.valueOf();
+  strArray.map(str => originalStr = originalStr.replace(str, "***"));
+  return originalStr;
+}
+
+console.log("This house is nice!".filterWords(['house', 'nice']));
+
+
+String.prototype.filterWords = function(strArray) {
+  let originalStr = this.valueOf();
+  return new Promise(function(resolve, reject) {
+    strArray.map(str => originalStr = originalStr.replace(str, "***"));
+    resolve(originalStr);
+  });
+}
+
+"This house is nice!".filterWords(['house', 'nice']).then(result => console.log(result));
+
+
+
+// String.prototype.filterWords = async function(strArray) {
+//   let originalStr = this.valueOf();
+//   return new Promise(function(resolve, reject) {
+//     strArray.map(str => originalStr = originalStr.replace(str, "***"));
+//     resolve(originalStr);
+//   });
+// }
+
+// let result = await "This house is nice!".filterWords(['house', 'nice']);
+// console.log(result);
+
+
+
+function isWeekend() {
+  const todayDate = new Date();
+  const day = todayDate.getDay();
+  const daysName = ['weekend', 'weekday', 'weekday', 'weekday', 'weekday', 'weekday', 'weekend'];
+  console.log(day);
+  return daysName[day];
+}
+
+console.log(isWeekend());
+
+function applyCoupon(item) {
+  return function(ammount) {
+    item.price -= ammount;
+    console.log(item);
+    return item;
+  }
+}
+
+const item = {
+  "name": "Avocado",
+  "type": "Fruit",
+  "category": "Food",
+  "price": 200
+}
+
+console.log(applyCoupon(item)(20).price === 180);
+
+
+
+  </script>
+</html>
