@@ -89,3 +89,13 @@ const item = {
 }
 
 console.log(applyCoupon(item)(20).price === 180);
+
+
+
+
+sayHi(); 
+function sayHi() {console.log("Hi")}
+
+
+sayHi(); 
+var sayHi = function() {console.log("Hi")}
