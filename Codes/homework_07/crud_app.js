@@ -9,7 +9,7 @@ const uri = "mongodb+srv://dbUser:myPassword@cluster0-b7azg.mongodb.net/test?ret
 
 global.client = null;  
 
-app.use( bodyParser.json() );
+app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true})); 
 
