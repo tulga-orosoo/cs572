@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack ./js/app.js -o ./js/bundle.js --devtool source-map"
+    "compile": "tsc",
+    "build": "webpack ./js/app.js -o ./js/bundle.js --devtool source-map",
+    "start": "tsc; npm run build; http-server"
   },
   "keywords": [],
   "author": "",
