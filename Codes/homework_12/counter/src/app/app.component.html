@@ -1,0 +1,16 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container">
+  <h1 style="text-align:center">
+    My counter app for MWA course
+     {{ title }}!
+  </h1>
+
+<h2>Counters: </h2>
+<app-counter [counterValue]="counterValues[0]" (onChange)="changeCounterValue($event, 0)"></app-counter>
+<p>Component counter value = {{counterValues[0]}}</p>
+<app-counter [counterValue]="counterValues[1]" (onChange)="changeCounterValue($event, 1)"></app-counter>
+<p>Component counter value = {{counterValues[1]}}</p><app-counter [counterValue]="counterValues[2]" (onChange)="changeCounterValue($event, 2)"></app-counter>
+<p>Component counter value = {{counterValues[2]}}</p><app-counter [counterValue]="counterValues[3]" (onChange)="changeCounterValue($event, 3)"></app-counter>
+<p>Component counter value = {{counterValues[3]}}</p>
+
+<router-outlet></router-outlet>
