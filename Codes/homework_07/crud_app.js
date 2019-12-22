@@ -11,16 +11,19 @@ global.client = null;
 
 app.use(bodyParser.json());
 
+
+
 app.use(bodyParser.urlencoded({extended: true})); 
 
 app.use(function (req, res, next) {
   function setCollectionAndNext() {
     req.mongoCollection  = global.client.db("homework07").collection("lectures");
-        next();;
+    next();
   }
   if(!global.client) {
     global.client = new MongoClient(uri, { useNewUrlParser: true });
     global.client.connect(err => {
+      console.log("getting connection");
       if(!err) {
         setCollectionAndNext();
       } else {
